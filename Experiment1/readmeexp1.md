@@ -93,8 +93,11 @@ DCL Verification: The librarian role was successfully created and assigned the n
 
 ![alt text](<Screenshot 2026-01-21 at 7.53.20 PM.png>) ![alt text](<Screenshot 2026-01-21 at 7.53.51 PM.png>) ![alt text](<Screenshot 2026-01-21 at 7.55.02 PM.png>)
 
-6. Learning Outcome
-   This practical session provided significant insights into:
+Validation: Testing confirmed that after the REVOKE command, the librarian could no longer perform operations on the books table, ensuring the security policy is functional.
+![alt text](<Screenshot 2026-01-21 at 8.33.07 PM.png>)
+We also confirmed the permissions of the role “librarian” by checking the table privileges.
+![alt text](<Screenshot 2026-01-21 at 8.35.03 PM.png>) 6. Learning Outcome
+This practical session provided significant insights into:
 
 Structural Logic: Understanding how Foreign Keys and Check Constraints maintain high data quality and prevent logical errors.
 
