@@ -1,76 +1,96 @@
-# Practical Experiment Documentation: SQL Table Management and Conditional Logic
+# 🧪 Experiment 5 – SQL Conditional Logic (Odd & Even Values)
 
-## 1. Aim of the Session
+## 📌 Aim
 
-To demonstrate the creation of a database schema, population of records, and the use of the **CASE Expression** to perform conditional analysis on numerical data (specifically a parity check on salary values).
-
----
-
-## 2. Objective of the Session
-
-- To learn how to manage table lifecycles using `DROP` and `CREATE`.
-- To understand the application of the modulo operator (`%`) in SQL.
-- To gain proficiency in creating virtual columns using `CASE-WHEN-THEN-ELSE` logic.
-- To practice basic **Data Manipulation Language (DML)** and **Data Query Language (DQL)** operations.
+To understand and apply conditional logic in SQL by using the **MOD (%) operator** to analyze numerical data and classify employee salaries as **odd or even**, thereby improving data analysis and decision-making skills in SQL.
 
 ---
 
-## 3. Practical / Experiment Steps
+## 🎯 Objectives
 
-The experiment consists of the following logic:
-
-- **Table Setup:** Ensure a clean environment by removing any existing `employee` table and creating a new one with specific constraints (Primary Key).
-- **Data Population:** Insert six distinct records representing employee IDs, names, and salaries.
-- **Conditional Querying:** Execute a `SELECT` statement that calculates the remainder of the salary divided by 2 using `salary % 2`.
-- **Classification:** If the remainder is 0, classify as 'Even Salary'; otherwise, classify as 'Odd Salary' using a `CASE` statement.
-
----
-
-## 4. Procedure of the Practical
-
-1.  **Start your SQL environment:** Log in to your computer and open your SQL tool (MySQL, PostgreSQL, Oracle, etc.).
-2.  **Open a new Query Editor window:** Prepare a space for script execution.
-3.  **Create or select the required database schema.**
-4.  **Write the Setup Commands:** Type the `DROP TABLE IF EXISTS` and `CREATE TABLE` commands to define the structure.
-5.  **Execute the INSERT commands:** Populate the table with the provided dataset.
-6.  **Write the Logical Query:** Incorporate the `CASE` expression for salary classification.
-7.  **Execute and Verify:** Run the script and verify that the `salary_type` column correctly reflects the parity of the salary.
-8.  **Record Results:** Note down the findings and take a screenshot of the execution results.
+- To understand the use of the **MOD (%) operator** in SQL.
+- To identify whether a number is **odd or even** using SQL queries.
+- To apply conditional logic using **CASE statements**.
+- To display employee salary data based on conditions.
+- To improve data filtering and classification skills.
 
 ---
 
-## 5. I/O Analysis (Input / Output Analysis)
+## ⚙ Software Requirement
 
-### Input: Employee Table Data
+- **Database Management System:**
+  - Oracle Database Express Edition (Oracle XE)
+  - PostgreSQL
 
-| emp_id | emp_name | salary |
-| :----- | :------- | :----- |
-| 101    | ayush    | 50024  |
-| 102    | akash    | 25001  |
-| 103    | bimlesh  | 45120  |
-| 104    | chandan  | 48203  |
-| 105    | dinesh   | 68103  |
-| 106    | kashish  | 79536  |
+- **Client Tools:**
+  - Oracle SQL Developer
+  - pgAdmin
 
 ---
 
-### Output: Query Results
+## 🧩 Practical / Experiment Description
 
-| emp_id | emp_name | salary | salary_type     |
-| :----- | :------- | :----- | :-------------- |
-| 101    | ayush    | 50024  | **Even Salary** |
-| 102    | akash    | 25001  | **Odd Salary**  |
-| 103    | bimlesh  | 45120  | **Even Salary** |
-| 104    | chandan  | 48203  | **Odd Salary**  |
-| 105    | dinesh   | 68103  | **Odd Salary**  |
-| 106    | kashish  | 79536  | **Even Salary** |
+This experiment demonstrates the use of SQL conditional logic to classify employee salaries as **odd or even** using the **MOD (%) operator**.
 
-## ![alt text](<Screenshot 2026-03-09.png>)
+By applying SQL queries, we analyze salary values and separate them based on their mathematical properties, which is useful in real-world data analysis.
 
-## 6. Learning Outcome
+---
 
-Through this practical session, I have achieved the following:
+## 🛠 Procedure
 
-- **Concepts Understood:** Mastered the `CASE` statement syntax, which allows for "if-then-else" logic directly within a SQL result set.
-- **Skills Developed:** Gained the ability to categorize data dynamically without altering the physical storage of the table.
-- **Practical Exposure:** Learned how to handle table resets (`DROP`/`CREATE`) and perform mathematical operations like modulo within a query to derive meaningful business insights.
+1. Open Oracle SQL Developer or pgAdmin.
+2. Create an **Employee table**.
+3. Insert sample data into the table.
+4. Use the **MOD (%) operator** to check odd and even salaries.
+5. Apply **CASE statements** for classification.
+6. Execute queries and observe the output.
+
+---
+
+## 💻 Code
+
+```sql
+-- Step 1: Create Employee Table
+CREATE TABLE Employee (
+    Emp_ID INT PRIMARY KEY,
+    Emp_Name VARCHAR(50),
+    Salary INT
+);
+
+-- Step 2: Insert Sample Data
+INSERT INTO Employee VALUES (1, 'Aman', 25000);
+INSERT INTO Employee VALUES (2, 'Riya', 32001);
+INSERT INTO Employee VALUES (3, 'Karan', 45000);
+INSERT INTO Employee VALUES (4, 'Neha', 27555);
+INSERT INTO Employee VALUES (5, 'Arjun', 30000);
+
+-- Step 3: Display All Records
+SELECT * FROM Employee;
+
+-- Program 1: Find Even Salaries
+SELECT Emp_ID, Emp_Name, Salary
+FROM Employee
+WHERE MOD(Salary, 2) = 0;
+
+-- Program 2: Find Odd Salaries
+SELECT Emp_ID, Emp_Name, Salary
+FROM Employee
+WHERE MOD(Salary, 2) <> 0;
+
+-- Program 3: Classify Salaries using CASE
+SELECT Emp_ID, Emp_Name, Salary,
+       CASE
+           WHEN MOD(Salary, 2) = 0 THEN 'Even Salary'
+           ELSE 'Odd Salary'
+       END AS Salary_Type
+FROM Employee;
+
+-- Program 4: Count Odd and Even Salaries
+SELECT
+    COUNT(CASE WHEN MOD(Salary, 2) = 0 THEN 1 END) AS Even_Count,
+    COUNT(CASE WHEN MOD(Salary, 2) <> 0 THEN 1 END) AS Odd_Count
+FROM Employee;
+
+## OUTPUT:
+![alt text](<Screenshot 2026-03-25 at 9.44.21 AM.png>)
+```
